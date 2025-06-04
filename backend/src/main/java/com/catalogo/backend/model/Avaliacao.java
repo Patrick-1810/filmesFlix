@@ -14,18 +14,18 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn(name = "filme_id")
-    private Filme filme;
+    private Filmes filmes;
 
   
     public Avaliacao() {
     }
 
 
-    public Avaliacao(String autor, String comentario, int avaliacao, Filme filme) {
+    public Avaliacao(String autor, String comentario, int avaliacao, Filmes filmes) {
         this.autor = autor;
         this.comentario = comentario;
         this.avaliacao = avaliacao;
-        this.filme = filme;
+        this.filmes = filmes;
     }
 
   
@@ -41,6 +41,6 @@ public class Avaliacao {
     public int getAvaliacao() { return avaliacao; }
     public void setAvaliacao(int avaliacao) { this.avaliacao = avaliacao; }
 
-    public Filme getFilme() { return filme; }
-    public void setFilme(Filme filme) { this.filme = filme; }
+    public Filmes getFilme() { return filmes; }
+    public void setFilme(Filmes filmes) { this.filmes = filmes; }
 }
