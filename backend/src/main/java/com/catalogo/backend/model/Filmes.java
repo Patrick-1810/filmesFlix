@@ -16,6 +16,7 @@ public class Filmes {
     private String sinopse;
     private int anoDeLancamento;
     private double avaliacao;
+    private String imagem;
 
     public Filmes() {
     }
@@ -74,5 +75,13 @@ public class Filmes {
 
     public void setAvaliacao(double avaliacao) {
         this.avaliacao = avaliacao;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 }
