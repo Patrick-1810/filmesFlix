@@ -12,23 +12,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
 defineProps({
-  movie: Object
-})
+  movie: Object,
+});
 
-const hover = ref(false)
-
+const hover = ref(false);
 
 const getImageUrl = (filename) => {
-  return new URL(`../assets/movies/${filename}`, import.meta.url).href
-}
-
+  return new URL(`../assets/movies/${filename}`, import.meta.url).href;
+};
 </script>
 
 <style scoped>
-
 * {
   padding: 0;
   margin: 0;
@@ -37,13 +34,12 @@ const getImageUrl = (filename) => {
   color: #ffffff;
 }
 
-
 .movie-card {
   position: relative;
   width: 200px;
   height: 350px;
   margin: 10px;
-  top: 220px;
+  top: 8rem;
   border-radius: 10px;
   overflow: hidden;
   background: #111;
@@ -55,12 +51,11 @@ const getImageUrl = (filename) => {
   transform: scale(1.05);
 }
 
-
 .movie-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute; 
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
@@ -72,7 +67,7 @@ const getImageUrl = (filename) => {
   left: 0;
   width: 100%;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.2); 
+  background: rgba(0, 0, 0, 0.2);
   color: #fff;
   z-index: 1;
 }

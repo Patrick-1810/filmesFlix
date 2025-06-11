@@ -1,21 +1,17 @@
 <template>
   <Header />
 
-<div class="container">
-  <div class="movie-grid">
-     <MovieCard
-      v-for="(movie, index) in movies"
-      :key="index"
-      :movie="movie"
-     />
-   </div>
-</div>
+  <div class="container">
+    <div class="movie-grid">
+      <MovieCard v-for="(movie, index) in movies" :key="index" :movie="movie" />
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import Header from '@/components/Header.vue'
-import MovieCard from '@/components/MovieCard.vue'
+import { ref } from "vue";
+import Header from "@/components/Header.vue";
+import MovieCard from "@/components/MovieCard.vue";
 
 const movies = ref([
   {
@@ -99,22 +95,21 @@ const movies = ref([
     synopsis:
       "Melhores amigos desde a infância, Rosie e Alex enfrentam amores perdidos e desencontros ao longo dos anos até perceberem o que sentem um pelo outro.",
   },
-])
+]);
 </script>
 
 <style scoped>
-* {
+:global(body) {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Cairo", sans-serif;
-  
+  background-color: rgb(27, 25, 25);
+  min-height: 100vh;
 }
 
-.container{
+.container {
   width: 100%;
-  height: auto;
-  background:rgb(27, 25, 25);
 }
 
 .movie-grid {
@@ -122,6 +117,5 @@ const movies = ref([
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
-
 }
-</style>  
+</style>
