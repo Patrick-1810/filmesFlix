@@ -5,18 +5,24 @@
         <a href="#" class="logo">
           Filmes<span class="main-color">flix</span>
         </a>
-        <ul class="nav-menu" :class="{ active: isMenuOpen }" id="nav-menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Movies</a></li>
-          <li>
-            <a href="#" class="btn btn-hover">
-              <span>Sign in</span>
-            </a>
-          </li>
-        </ul>
-          <div class="hamburger-menu" :class="{ active: isMenuOpen }" @click="toggleMenu">
-          <div class="hamburger"></div>
-        </div>
+            <div class="nav-actions">
+                <div class="search-container" :class="{ open: isSearchOpen }">
+                <input type="text" placeholder="Buscar filmes..." class="search-input" />
+                <i class='bx bx-search search-icon' @click="toggleSearch"></i>
+            </div>
+
+               <div class="hamburger-menu" :class="{ active: isMenuOpen }" @click="toggleMenu">
+                    <div class="hamburger"></div>
+               </div>
+            </div>
+
+             <ul class="nav-menu" :class="{ active: isMenuOpen }" id="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#" class="btn btn-hover"><span>Sign in</span></a></li>
+            </ul>
+
+          
       </div>
     </div>
   </div>
@@ -26,9 +32,14 @@
 import { ref } from 'vue'
 
 const isMenuOpen = ref(false)
+const isSearchOpen = ref(false)
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
+}
+
+const toggleSearch = () => {
+  isSearchOpen.value = !isSearchOpen.value
 }
 
 </script>
@@ -96,6 +107,37 @@ img {
   padding: 0 20px;
   margin-right: 90px;
 }
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.search-input {
+  height: 35px;
+  border: none;
+  border-radius: 20px;
+  padding: 0 15px;
+  background-color: #1e1e1e;
+  color: white;
+  font-size: 1rem;
+  transition: width 0.3s ease;
+  width: 200px;
+}
+
+.search-icon {
+  color: white;
+  font-size: 1.9rem;
+  cursor: pointer;
+  margin-left: 10px;
+  display: none; 
+}
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 
 .nav-menu li ~ li {
  margin-left: 30px;
@@ -242,6 +284,33 @@ a.movie-item:hover {
 
   .nav-menu li ~ li {
     margin-left: 0;
+  }
+
+  .search-input {
+    position: fixed; /* <-- Mude de absolute para fixed */
+    top: 60px;        /* abaixo do menu fixo */
+    left: 0;
+    width: 100vw;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    padding: 10px 20px;
+  }
+  
+  .search-container {
+    position: relative;
+    margin-left: auto;
+  }
+
+  .search-icon {
+    display: inline-block;
+  }
+
+  .search-container.open .search-input {
+    opacity: 1;
+    pointer-events: all;
+    width: 100vw;
+    padding: 10px 20px;
   }
 }
 
