@@ -6,7 +6,10 @@
       <p>⭐ {{ movie.rating }} | {{ movie.genre }} | {{ movie.year }}</p>
     </div>
     <div class="synopsis" v-if="hover">
+      <div class="synopsis-header">
       <p>{{ movie.synopsis }}</p>
+      <i class='bx bx-heart save-icon' @click="saveMovie"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -84,5 +87,24 @@ const getImageUrl = (filename) => {
   width: 100%;
   overflow-y: auto;
   transition: opacity 0.3s ease;
+}
+
+.synopsis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.save-icon {
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.save-icon:hover {
+  transform: scale(1.2);
+  color: #bb1a1a;
 }
 </style>
