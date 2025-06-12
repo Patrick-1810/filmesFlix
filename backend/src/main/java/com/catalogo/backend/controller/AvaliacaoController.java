@@ -9,7 +9,7 @@ import com.catalogo.backend.model.Avaliacao;
 import com.catalogo.backend.service.AvaliacaoService;
 
 @RestController
-@RequestMapping("/avaliacoes")
+@RequestMapping("/api/avaliacoes")
 public class AvaliacaoController {
 
     @Autowired

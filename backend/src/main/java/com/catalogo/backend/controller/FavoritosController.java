@@ -9,7 +9,7 @@ import com.catalogo.backend.model.Favoritos;
 import com.catalogo.backend.service.FavoritosService;
 
 @RestController
-@RequestMapping("/favoritos")
+@RequestMapping("/api/favoritos")
 @CrossOrigin(origins = "*")
 public class FavoritosController {
 
