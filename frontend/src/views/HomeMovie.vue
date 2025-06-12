@@ -1,17 +1,21 @@
 <template>
-  <Header />
+    <Header />
 
-  <div class="container">
-    <div class="movie-grid">
-      <MovieCard v-for="(movie, index) in movies" :key="index" :movie="movie" />
-    </div>
-  </div>
+      <div class="container">
+        <div class="movie-grid">
+          <MovieCard v-for="(movie, index) in movies" :key="index" :movie="movie" />
+        </div>
+      </div>
+
+    <Footer />
+  
 </template>
 
 <script setup>
 import { ref } from "vue";
 import Header from "@/components/Header.vue";
 import MovieCard from "@/components/MovieCard.vue";
+import Footer from "@/components/Footer.vue";
 
 const movies = ref([
   {
@@ -107,6 +111,8 @@ const movies = ref([
   background-color: rgb(27, 25, 25);
   min-height: 100vh;
 }
+
+
 
 .container {
   width: 100%;
