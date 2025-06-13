@@ -18,7 +18,15 @@
 
              <ul class="nav-menu" :class="{ active: isMenuOpen }" id="nav-menu">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Movies</a></li>
+                <li class="dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
+                   <a href="#" @click.prevent="toggleDropdown">Movies</a>
+                   <ul class="dropdown-menu" :class="{ show: showDropdown }">
+                           <li><a href="#">Ação</a></li>
+                           <li><a href="#">Comédia</a></li>
+                           <li><a href="#">Romance</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="#" class="btn btn-hover"><span>Sign in</span></a></li>
             </ul>
 
@@ -50,7 +58,7 @@ const emitSearch = () => {
 </script>
 
 <style scoped>
-* {
+:global(body) {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -198,6 +206,47 @@ a.movie-item:hover {
 .btn i {
   margin-right: 1rem;
 }
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #111;
+  padding: 10px 0;
+  list-style: none;
+  display: none;
+  flex-direction: column;
+  min-width: 150px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 99;
+}
+
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dropdown-menu li a {
+  padding: 12px 20px;
+  display: block;
+  color: white;
+  text-align: center;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #222;
+  color: #bb1a1a;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu.show {
+  display: flex !important;
+}
 
 .hamburger-menu {
   --size: 30px;
@@ -267,6 +316,7 @@ a.movie-item:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   gap: 30px;
   transform: translateY(-100%);
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -290,10 +340,33 @@ a.movie-item:hover {
   .nav-menu li ~ li {
     margin-left: 0;
   }
+  
+  .dropdown {
+    width: 100%;
+  }
 
+  .dropdown-menu {
+    position: static;
+    background-color: transparent;
+    box-shadow: none;
+    padding-left: 20px;
+    display: none;
+  }
+
+  .dropdown-menu li a {
+    color: white;
+    padding: 10px 0;
+  }
+
+  .dropdown-menu.show {
+    display: flex;
+    flex-direction: column;
+  }
+
+  
   .search-input {
-    position: fixed; /* <-- Mude de absolute para fixed */
-    top: 60px;        /* abaixo do menu fixo */
+    position: fixed; 
+    top: 60px;      
     left: 0;
     width: 100vw;
     opacity: 0;
