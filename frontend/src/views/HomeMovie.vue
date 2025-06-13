@@ -1,14 +1,19 @@
 <template>
+  <div class="layout">
     <Header />
 
-      <div class="container">
-        <div class="movie-grid">
-          <MovieCard v-for="(movie, index) in filteredMovies" :key="index" :movie="movie" />
-        </div>
+    <div class="container">
+      <div class="movie-grid">
+        <MovieCard
+          v-for="(movie, index) in filteredMovies"
+          :key="index"
+          :movie="movie"
+        />
       </div>
+    </div>
 
     <Footer />
-  
+  </div>
 </template>
 
 <script setup>
@@ -31,22 +36,21 @@ onMounted(async () => {
     console.error("Erro ao buscar filmes da API:", error);
   }
 
-   window.addEventListener("search-movie", onSearch);
-   window.addEventListener("filter-genre", onFilterGenre);
-});
- 
-   onBeforeUnmount(() => {
-      window.removeEventListener("search-movie", onSearch);
-      window.removeEventListener("filter-genre", onFilterGenre);
+  window.addEventListener("search-movie", onSearch);
+  window.addEventListener("filter-genre", onFilterGenre);
 });
 
-    function onSearch(e) {
-       searchQuery.value = e.detail.toLowerCase();
-       filteredMovies.value = movies.value.filter((movie) =>
-       movie.nome.toLowerCase().includes(searchQuery.value)
+onBeforeUnmount(() => {
+  window.removeEventListener("search-movie", onSearch);
+  window.removeEventListener("filter-genre", onFilterGenre);
+});
+
+function onSearch(e) {
+  searchQuery.value = e.detail.toLowerCase();
+  filteredMovies.value = movies.value.filter((movie) =>
+    movie.nome.toLowerCase().includes(searchQuery.value)
   );
 }
-
 </script>
 
 <style scoped>
@@ -59,10 +63,14 @@ onMounted(async () => {
   min-height: 100vh;
 }
 
-
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 .container {
-  width: 100%;
+  flex: 1;
 }
 
 .movie-grid {

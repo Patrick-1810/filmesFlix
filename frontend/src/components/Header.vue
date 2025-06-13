@@ -5,54 +5,80 @@
         <a href="#" class="logo">
           Filmes<span class="main-color">flix</span>
         </a>
-            <div class="nav-actions">
-                <div class="search-container" :class="{ open: isSearchOpen }">
-                <input type="text" placeholder="Buscar filmes..." class="search-input" v-model="searchQuery" @input="emitSearch" />
-                <i class='bx bx-search search-icon' @click="toggleSearch"></i>
-            </div>
+        <div class="nav-actions">
+          <div class="search-container" :class="{ open: isSearchOpen }">
+            <input
+              type="text"
+              placeholder="Buscar filmes..."
+              class="search-input"
+              v-model="searchQuery"
+              @input="emitSearch"
+            />
+            <i class="bx bx-search search-icon" @click="toggleSearch"></i>
+          </div>
 
-               <div class="hamburger-menu" :class="{ active: isMenuOpen }" @click="toggleMenu">
-                    <div class="hamburger"></div>
-               </div>
-            </div>
+          <div
+            class="hamburger-menu"
+            :class="{ active: isMenuOpen }"
+            @click="toggleMenu"
+          >
+            <div class="hamburger"></div>
+          </div>
+        </div>
 
-             <ul class="nav-menu" :class="{ active: isMenuOpen }" id="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li class="dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
-                   <a href="#" @click.prevent="toggleDropdown">Movies</a>
-                   <ul class="dropdown-menu" :class="{ show: showDropdown }">
-                       <li><a href="#" @click.prevent="filterByGenre('Ação')">Ação</a></li>
-                       <li><a href="#" @click.prevent="filterByGenre('Comédia')">Comédia</a></li>
-                       <li><a href="#" @click.prevent="filterByGenre('Romance')">Romance</a></li>
-                   </ul>
-                </li>
-
-                <li><a href="#" class="btn btn-hover"><span>Sign in</span></a></li>
+        <ul class="nav-menu" :class="{ active: isMenuOpen }" id="nav-menu">
+          <li><a href="#">Home</a></li>
+          <li
+            class="dropdown"
+            @mouseenter="showDropdown = true"
+            @mouseleave="showDropdown = false"
+          >
+            <a href="#" @click.prevent="toggleDropdown">Movies</a>
+            <ul class="dropdown-menu" :class="{ show: showDropdown }">
+              <li>
+                <a href="#" @click.prevent="filterByGenre('Ação')">Ação</a>
+              </li>
+              <li>
+                <a href="#" @click.prevent="filterByGenre('Comédia')"
+                  >Comédia</a
+                >
+              </li>
+              <li>
+                <a href="#" @click.prevent="filterByGenre('Romance')"
+                  >Romance</a
+                >
+              </li>
             </ul>
+          </li>
 
-          
+          <li>
+            <a href="#" class="btn btn-hover"><span>Sign in</span></a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const isMenuOpen = ref(false)
-const isSearchOpen = ref(false)
+const isMenuOpen = ref(false);
+const isSearchOpen = ref(false);
 const searchQuery = ref("");
 
 const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value
-}
+  isMenuOpen.value = !isMenuOpen.value;
+};
 
 const toggleSearch = () => {
-  isSearchOpen.value = !isSearchOpen.value
-}
+  isSearchOpen.value = !isSearchOpen.value;
+};
 
 const emitSearch = () => {
-  window.dispatchEvent(new CustomEvent("search-movie", { detail: searchQuery.value }));
+  window.dispatchEvent(
+    new CustomEvent("search-movie", { detail: searchQuery.value })
+  );
 };
 
 const filterByGenre = (genre) => {
@@ -86,7 +112,7 @@ img {
 
 .container {
   max-width: 1920px;
-  padding:  20px;
+  padding: 20px;
   margin: auto;
 }
 
@@ -147,25 +173,26 @@ img {
   font-size: 1.9rem;
   cursor: pointer;
   margin-left: 10px;
-  display: none; 
+  display: none;
 }
 .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
 .nav-menu li ~ li {
- margin-left: 30px;
+  margin-left: 30px;
 }
 
 .nav-menu a {
+  font-size: medium;
   text-transform: uppercase;
   font-weight: 700;
 }
 
 .nav-menu a:hover {
-  color:#bb1a1a;
+  color: #bb1a1a;
 }
 
 .nav-menu a.btn:hover,
@@ -186,6 +213,7 @@ a.movie-item:hover {
 }
 
 .btn-hover::before {
+  border-radius: 8px;
   z-index: 1;
   content: "";
   position: absolute;
@@ -209,6 +237,7 @@ a.movie-item:hover {
 .btn i {
   margin-right: 1rem;
 }
+
 .dropdown {
   position: relative;
 }
@@ -216,30 +245,20 @@ a.movie-item:hover {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
-  background-color: #111;
-  padding: 10px 0;
+  background-color: #222;
   list-style: none;
+  padding: 0;
   display: none;
-  flex-direction: column;
-  min-width: 150px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  z-index: 99;
-}
-
-.dropdown-menu li {
-  width: 100%;
 }
 
 .dropdown-menu li a {
-  padding: 12px 20px;
-  display: block;
+  padding: 12px;
+  display: flex;
   color: white;
-  text-align: center;
+  font-size: 15px;
 }
 
 .dropdown-menu li a:hover {
-  background-color: #222;
   color: #bb1a1a;
 }
 
@@ -307,34 +326,37 @@ a.movie-item:hover {
   left: 6px;
 }
 
+@media screen and (min-width: 768px) and (max-width: 850px) {
+  .nav-menu a {
+    font-size: small;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .nav-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.85);
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 30px;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 98;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.85);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 98;
   }
 
-
- .nav-menu.active {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
   }
-
 
   .hamburger-menu {
     display: flex;
@@ -343,16 +365,15 @@ a.movie-item:hover {
   .nav-menu li ~ li {
     margin-left: 0;
   }
-  
+
   .dropdown {
     width: 100%;
   }
 
   .dropdown-menu {
-    position: static;
     background-color: transparent;
     box-shadow: none;
-    padding-left: 20px;
+    gap: 20px;
     display: none;
   }
 
@@ -361,15 +382,9 @@ a.movie-item:hover {
     padding: 10px 0;
   }
 
-  .dropdown-menu.show {
-    display: flex;
-    flex-direction: column;
-  }
-
-  
   .search-input {
-    position: fixed; 
-    top: 60px;      
+    position: fixed;
+    top: 60px;
     left: 0;
     width: 100vw;
     opacity: 0;
@@ -377,7 +392,7 @@ a.movie-item:hover {
     z-index: 100;
     padding: 10px 20px;
   }
-  
+
   .search-container {
     position: relative;
     margin-left: auto;
@@ -394,6 +409,4 @@ a.movie-item:hover {
     padding: 10px 20px;
   }
 }
-
-
 </style>
