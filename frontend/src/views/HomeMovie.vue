@@ -32,10 +32,12 @@ onMounted(async () => {
   }
 
    window.addEventListener("search-movie", onSearch);
+   window.addEventListener("filter-genre", onFilterGenre);
 });
  
    onBeforeUnmount(() => {
       window.removeEventListener("search-movie", onSearch);
+      window.removeEventListener("filter-genre", onFilterGenre);
 });
 
     function onSearch(e) {

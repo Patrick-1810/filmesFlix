@@ -21,10 +21,10 @@
                 <li class="dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
                    <a href="#" @click.prevent="toggleDropdown">Movies</a>
                    <ul class="dropdown-menu" :class="{ show: showDropdown }">
-                           <li><a href="#">Ação</a></li>
-                           <li><a href="#">Comédia</a></li>
-                           <li><a href="#">Romance</a></li>
-                    </ul>
+                       <li><a href="#" @click.prevent="filterByGenre('Ação')">Ação</a></li>
+                       <li><a href="#" @click.prevent="filterByGenre('Comédia')">Comédia</a></li>
+                       <li><a href="#" @click.prevent="filterByGenre('Romance')">Romance</a></li>
+                   </ul>
                 </li>
 
                 <li><a href="#" class="btn btn-hover"><span>Sign in</span></a></li>
@@ -55,6 +55,9 @@ const emitSearch = () => {
   window.dispatchEvent(new CustomEvent("search-movie", { detail: searchQuery.value }));
 };
 
+const filterByGenre = (genre) => {
+  window.dispatchEvent(new CustomEvent("filter-genre", { detail: genre }));
+};
 </script>
 
 <style scoped>
