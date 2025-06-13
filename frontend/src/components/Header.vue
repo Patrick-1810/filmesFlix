@@ -7,7 +7,7 @@
         </a>
             <div class="nav-actions">
                 <div class="search-container" :class="{ open: isSearchOpen }">
-                <input type="text" placeholder="Buscar filmes..." class="search-input" />
+                <input type="text" placeholder="Buscar filmes..." class="search-input" v-model="searchQuery" @input="emitSearch" />
                 <i class='bx bx-search search-icon' @click="toggleSearch"></i>
             </div>
 
@@ -33,6 +33,7 @@ import { ref } from 'vue'
 
 const isMenuOpen = ref(false)
 const isSearchOpen = ref(false)
+const searchQuery = ref("");
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -41,6 +42,10 @@ const toggleMenu = () => {
 const toggleSearch = () => {
   isSearchOpen.value = !isSearchOpen.value
 }
+
+const emitSearch = () => {
+  window.dispatchEvent(new CustomEvent("search-movie", { detail: searchQuery.value }));
+};
 
 </script>
 

@@ -3,7 +3,7 @@
 
       <div class="container">
         <div class="movie-grid">
-          <MovieCard v-for="(movie, index) in movies" :key="index" :movie="movie" />
+          <MovieCard v-for="(movie, index) in filteredMovies" :key="index" :movie="movie" />
         </div>
       </div>
 
@@ -15,19 +15,35 @@
 import Header from "@/components/Header.vue";
 import MovieCard from "@/components/MovieCard.vue";
 import Footer from "@/components/Footer.vue";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import api from "@/services/api";
 
 const movies = ref([]);
+const filteredMovies = ref([]);
+const searchQuery = ref("");
 
 onMounted(async () => {
   try {
     const response = await api.get("/filmes");
     movies.value = response.data;
+    filteredMovies.value = movies.value;
   } catch (error) {
     console.error("Erro ao buscar filmes da API:", error);
   }
+
+   window.addEventListener("search-movie", onSearch);
 });
+ 
+   onBeforeUnmount(() => {
+      window.removeEventListener("search-movie", onSearch);
+});
+
+    function onSearch(e) {
+       searchQuery.value = e.detail.toLowerCase();
+       filteredMovies.value = movies.value.filter((movie) =>
+       movie.nome.toLowerCase().includes(searchQuery.value)
+  );
+}
 
 </script>
 
