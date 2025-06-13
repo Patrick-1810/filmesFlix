@@ -47,6 +47,18 @@ onMounted(async () => {
   );
 }
 
+    function onFilterGenre(e) {
+       const genre = e.detail.toLowerCase();
+       if (genre === "all") {
+       filteredMovies.value = movies.value;
+    }else {
+       filteredMovies.value = movies.value.filter((movie) =>
+       movie.genero.toLowerCase() === genre
+    );
+  }
+}
+
+
 </script>
 
 <style scoped>

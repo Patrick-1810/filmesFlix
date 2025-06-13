@@ -17,7 +17,7 @@
             </div>
 
              <ul class="nav-menu" :class="{ active: isMenuOpen }" id="nav-menu">
-                <li><a href="#">Home</a></li>
+                <li><a href="#" @click.prevent="filterByGenre('all')">Home</a></li>
                 <li class="dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
                    <a href="#" @click.prevent="toggleDropdown">Movies</a>
                    <ul class="dropdown-menu" :class="{ show: showDropdown }">
