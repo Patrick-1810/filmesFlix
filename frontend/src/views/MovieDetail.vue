@@ -108,3 +108,110 @@ onMounted(() => {
   buscarComentarios();
 });
 </script>
+
+<style scoped>
+:global(body) {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
+  background-color: rgb(27, 25, 25);
+  color: aliceblue;
+}
+
+.filmes-details {
+  padding-top: 6rem;
+  margin: 20px;
+}
+
+.details-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.imagem img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.infos {
+  display: flex;
+  flex-direction: column;
+}
+
+.infos p {
+  margin-bottom: 5px;
+}
+
+.coments-container {
+  margin-top: 8px;
+  padding: 20px;
+}
+
+.coments-container h3 {
+  text-align: center;
+}
+
+.coments-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.coments-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: transparent;
+  border-radius: 6px;
+  border: 1px solid #000000;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.coments-form {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.coments-form input,
+.coments-form textarea {
+  background-color: transparent;
+  color: #ffffff;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
+.coments-form button {
+  padding: 10px;
+  background-color: #bb1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 520px) {
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .infos h2 {
+    margin: 0;
+  }
+
+  .infos p {
+    margin-bottom: 2px;
+  }
+}
+</style>
