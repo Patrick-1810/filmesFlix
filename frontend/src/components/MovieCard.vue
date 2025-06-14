@@ -16,14 +16,19 @@
     <div class="synopsis" v-if="hover">
       <div class="synopsis-header">
         <p>{{ movie.sinopse }}</p>
-        <i class="bx bx-heart save-icon" @click="saveMovie"></i>
+        <i
+          class="save-icon"
+          :class="['bx', isFavorited ? 'bxs-heart' : 'bx-heart', 'save-icon']"
+          @click.stop="saveMovie"
+        ></i>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import favoritosApi from "@/services/favoritosApi";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const { movie } = defineProps({
@@ -31,11 +36,41 @@ const { movie } = defineProps({
 });
 
 const hover = ref(false);
+const isFavorited = ref(false);
 const router = useRouter();
+
+const checkFavorito = async () => {
+  try {
+    const res = await favoritosApi.getFavoritos();
+    isFavorited.value = res.data.some((fav) => fav.filmeId === movie.id);
+  } catch (error) {
+    console.error("Erro ao verificar favoritos: ", error);
+  }
+};
 
 const goToMovieDetail = () => {
   router.push(`/filme/${movie.id}`);
 };
+
+const saveMovie = async () => {
+  try {
+    if (isFavorited.value) {
+      await favoritosApi.removerFavorito(movie.id);
+      isFavorited.value = false;
+      alert("Filme removido dos favoritos!");
+    } else {
+      await favoritosApi.adicionarFavorito(movie.id);
+      isFavorited.value = true;
+      alert("Filme favoritado com sucesso!");
+    }
+  } catch (error) {
+    console.error("Erro ao favoritar/desfavoritar filme: ", error);
+  }
+};
+
+onMounted(() => {
+  checkFavorito();
+});
 </script>
 
 <style scoped>
@@ -52,7 +87,7 @@ const goToMovieDetail = () => {
   width: 200px;
   height: 350px;
   margin: 10px;
-  top: 8rem;
+  margin-top: 2rem;
   border-radius: 10px;
   overflow: hidden;
   background: #111;
@@ -108,9 +143,8 @@ const goToMovieDetail = () => {
 
 .save-icon {
   font-size: 24px;
-  color: #ffffff;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  color: #ffffff;
 }
 
 .save-icon:hover {
