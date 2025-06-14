@@ -1,14 +1,22 @@
 <template>
-  <div class="movie-card" @mouseover="hover = true" @mouseleave="hover = false">
+  <div
+    class="movie-card"
+    @mouseover="hover = true"
+    @mouseleave="hover = false"
+    @click="goToMovieDetail"
+  >
     <img :src="movie.imagem" :alt="movie.nome" />
     <div class="info">
       <h3>{{ movie.nome }}</h3>
-      <p>⭐ {{ movie.avaliacao }} | {{ movie.genero }} | {{ movie.anoDeLancamento }}</p> 
+      <p>
+        ⭐ {{ movie.avaliacao }} | {{ movie.genero }} |
+        {{ movie.anoDeLancamento }}
+      </p>
     </div>
     <div class="synopsis" v-if="hover">
       <div class="synopsis-header">
-      <p>{{ movie.sinopse }}</p>
-      <i class='bx bx-heart save-icon' @click="saveMovie"></i>
+        <p>{{ movie.sinopse }}</p>
+        <i class="bx bx-heart save-icon" @click="saveMovie"></i>
       </div>
     </div>
   </div>
@@ -16,13 +24,18 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-defineProps({
+const { movie } = defineProps({
   movie: Object,
 });
 
 const hover = ref(false);
+const router = useRouter();
 
+const goToMovieDetail = () => {
+  router.push(`/filme/${movie.id}`);
+};
 </script>
 
 <style scoped>

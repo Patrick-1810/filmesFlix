@@ -45,6 +45,13 @@ onBeforeUnmount(() => {
   window.removeEventListener("filter-genre", onFilterGenre);
 });
 
+function onFilterGenre(e) {
+  const genre = e.detail.toLowerCase();
+  filteredMovies.value = movies.value.filter((movie) =>
+    movie.genero.toLowerCase().includes(genre)
+  );
+}
+
 function onSearch(e) {
   searchQuery.value = e.detail.toLowerCase();
   filteredMovies.value = movies.value.filter((movie) =>
