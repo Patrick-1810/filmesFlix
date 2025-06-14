@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <div v-if="filme" class="filmes-details">
     <div class="details-container">
       <div class="imagem">
@@ -49,9 +50,12 @@
       </form>
     </div>
   </div>
+  <Footer />
 </template>
 
 <script setup>
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 import { onMounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import api from "@/services/api";
