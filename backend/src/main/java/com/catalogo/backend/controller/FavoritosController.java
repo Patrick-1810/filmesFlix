@@ -1,6 +1,5 @@
 package com.catalogo.backend.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,18 +15,14 @@ public class FavoritosController {
     @Autowired
     private FavoritosService favoritosService;
 
-    @GetMapping("/usuario/{usuarioId}")
-    public List<Favoritos> getFavoritosByUsuarioId(@PathVariable Long usuarioId) {
-        return favoritosService.getFavoritosByUsuarioId(usuarioId);
-    }
 
     @PostMapping
-    public Favoritos addFavorito(@RequestParam Long usuarioId, @RequestParam Long filmeId) {
-        return favoritosService.addFavorito(usuarioId, filmeId);
+    public Favoritos addFavorito(@RequestParam Long filmeId) {
+        return favoritosService.addFavorito(filmeId);
     }
 
     @DeleteMapping
-    public void removerFavorito(@RequestParam Long usuarioId, @RequestParam Long filmeId) {
-        favoritosService.removerFavorito(usuarioId, filmeId);
+    public void removerFavorito( @RequestParam Long filmeId) {
+        favoritosService.removerFavorito(filmeId);
     }
 }
