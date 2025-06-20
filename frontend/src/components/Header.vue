@@ -16,7 +16,6 @@
             />
             <i class="bx bx-search search-icon" @click="toggleSearch"></i>
           </div>
-
           <div
             class="hamburger-menu"
             :class="{ active: isMenuOpen }"
@@ -54,6 +53,7 @@
           <li>
             <a href="#" class="btn btn-hover"><span>Sign in</span></a>
           </li>
+           <i class="bx bxs-heart favorites-icon" @click="goToFavoritos"></i>
         </ul>
       </div>
     </div>
@@ -62,7 +62,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const isMenuOpen = ref(false);
 const isSearchOpen = ref(false);
 const searchQuery = ref("");
@@ -83,6 +85,10 @@ const emitSearch = () => {
 
 const filterByGenre = (genre) => {
   window.dispatchEvent(new CustomEvent("filter-genre", { detail: genre }));
+};
+
+const goToFavoritos = () => {
+  router.push("/favoritos");
 };
 </script>
 
@@ -175,6 +181,21 @@ img {
   margin-left: 10px;
   display: none;
 }
+
+.favorites-icon {
+  font-size: 1.9rem;
+  cursor: pointer;
+  color: white;
+  margin-left: 10px;
+  
+}
+
+.favorites-icon:hover {
+  color: #bb1a1a;
+  
+}
+
+
 .nav-actions {
   display: flex;
   align-items: center;
@@ -407,6 +428,7 @@ a.movie-item:hover {
     pointer-events: all;
     width: 100vw;
     padding: 10px 20px;
+
   }
 }
 </style>
