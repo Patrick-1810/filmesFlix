@@ -31,19 +31,6 @@ import favoritosApi from "@/services/favoritosApi";
 const favoritos = ref([]);
 const favoritosFilmes = ref([]);
 
-onMounted(async () => {
-  try {
-    const res = await favoritosApi.getFavoritos();
-    favoritos.value = res.data;
-
-    const filmesRes = await api.get("filmes");
-    favoritosFilmes.value = filmesRes.data.filter((filme) =>
-      favoritos.value.some((fav) => fav.filmeId === filme.id)
-    );
-  } catch (error) {
-    console.error("Erro ao carregar favoritos: ", error);
-  }
-});
 
 const carregarFavoritos = async () => {
   try {
