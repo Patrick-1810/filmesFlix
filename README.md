@@ -23,7 +23,7 @@
 
 ## 📌 Sobre
 
-Aplicação Full Stack desenvolvida para catalogar filmes. Os usuários podem visualizar detalhes, adicionar aos favoritos e avaliar os filmes disponíveis. O projeto utiliza **Vue.js** no front-end e **Spring Boot** no back-end, com **MySQL** como banco de dados.
+FilmesFlix é uma aplicação Full Stack de um cátalogo de filmes. Os usuários podem visualizar detalhes, adicionar aos favoritos e avaliar os filmes disponíveis. O projeto utiliza o framework **Vue.js** no front-end e **Spring Boot** no back-end, com **MySQL** como banco de dados. 
 
 ---
 
@@ -40,19 +40,19 @@ Certifique-se de ter instalado:
 
 ---
 
-### 🔽 Clonando o projeto
+## 🔽 Clonando o projeto
 
 ```bash
 git clone https://github.com/Patrick-1810/filmesFlix
 ```
-## 📂 Frontend
+### 📂 Frontend
 ```bash
 
 cd frontend
 npm install
 npm run serve
 ```
-## 📂 Backend
+### 📂 Backend
 Configure o arquivo application.properties com suas credenciais do MySQL:
 ```bash
 
